@@ -1,16 +1,17 @@
 ## Battleship with Java
 
- Battleship game built with  Java 11 and  Spring Boot 2.5.6
+ Battleship game built with Java 11.0.12 and Spring Boot 2.5.6
 
 ## Installation
-1.Clone the repository to your computer.
 
-2.Import the app into your IDE through build.gradle file.
+1. Clone the repository to your computer.
+
+2. Import the app into your IDE through build.gradle file.
 
 ## Start
-To start the application run the BattleshipApplication(./src/main/java/com.game.Battleship/BattleshipApplication)
+To start the application with IntelliJ IDEA run the BattleshipApplication( path: ./src/main/java/com.game.Battleship/BattleshipApplication)
 
-or run in te terminal:
+or run in the terminal:
 
 ``` ./gradlew bootRun```
 
@@ -20,13 +21,11 @@ For the home page go to:
 
 http://localhost:8080/home 
 
-
 ## Run tests
 
-To start tests, run BattleshipApplicationTests(./src/test/java/com.game.Battleship/BattleshipApplicationTests)
+To start tests with IntelliJ IDEA run BattleshipApplicationTests( path:  ./src/test/java/com.game.Battleship/BattleshipApplicationTests)
 
 or run in the terminal:
 
 ```./gradlew test```
-
 

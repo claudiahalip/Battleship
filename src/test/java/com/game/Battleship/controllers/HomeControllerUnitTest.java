@@ -1,9 +1,5 @@
 package com.game.Battleship.controllers;
-
 import org.junit.jupiter.api.Test;
-import org.springframework.ui.Model;
-import org.springframework.validation.support.BindingAwareModelMap;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HomeControllerUnitTest {
@@ -12,6 +8,6 @@ public class HomeControllerUnitTest {
     public void welcome() {
         HomeController controller = new HomeController();
         String result = controller.welcome();
-        assertEquals ("home", result);
+        assertEquals ("Welcome to Battleship game!", result);
     }
 }
