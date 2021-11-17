@@ -16,8 +16,10 @@ For the home page go to:
 
 http://localhost:8080/home 
 
-##Run tests
-To start tests run BattleshipApplicationTests(./src/test/java/com.game.Battleship/BattleshipApplicationTests)
+
+## Run tests
+
+To start tests, run BattleshipApplicationTests(./src/test/java/com.game.Battleship/BattleshipApplicationTests)
 
 
 
