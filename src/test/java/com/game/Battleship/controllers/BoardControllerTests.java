@@ -1,13 +1,18 @@
 package com.game.Battleship.controllers;
-import com.game.Battleship.models.Board;
-import com.game.Battleship.models.Cell;
 import org.junit.jupiter.api.Assertions;
+import com.game.Battleship.models.Board;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import  org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
+
+import java.util.Arrays;
+import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -17,28 +22,47 @@ public class BoardControllerTests {
     private TestRestTemplate template;
 
     @Test
-    public void boardEndpointContainsSizeAttribute(){
+    public void boardsEndpointContains2Boards() {
 
-        Board response = template.getForObject("/board", Board.class);
-        Assertions.assertEquals(10, response.getSize());
-
-    }
-
-    @Test
-    public void boardFieldSizeAttributeValueIs100(){
-
-        Board response = template.getForObject("/board", Board.class);
-        Assertions.assertEquals(100, response.getBoardField().size());
+        List<Object> response = template.getForObject("/boards", List.class);
+        Assertions.assertEquals(2, response.size());
 
     }
 
     @Test
-    public void boardFieldContainsCellObjects(){
+    public void boardsEndpointHasABoardObject() {
 
-        Board response = template.getForObject("/board", Board.class);
-        Cell cell = new Cell();
-        Assertions.assertEquals(true, response.getBoardField().add(cell));
+        ResponseEntity<Board[]> response = template.getForEntity("/boards", Board[].class);
+        Assert.isInstanceOf(Board.class, Arrays.stream(response.getBody()).findFirst().get());
+
+    }
+
+    @Test
+    public void boardsEndpointNameGetRequestReturnStatusOK() {
+
+        ResponseEntity<String> response = template.getForEntity("/boards/currentPlayer", String.class);
+        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+
+    }
+
+    @Test
+    public void boardsEndpointNameHasABoardObjectWithANameCurrentPlayer() {
+
+        Board response = template.getForObject("/boards/currentPlayer", Board.class);
+        Assertions.assertEquals("currentPlayer", response.getName());
+
+    }
+
+    @Test
+    public void boardsEndpointNameHasABoard() {
+
+        Board response = template.getForObject("/boards/currentPlayer", Board.class);
+        Assertions.assertEquals("currentPlayer", response.getName());
 
     }
 
 }
+
+
+
+

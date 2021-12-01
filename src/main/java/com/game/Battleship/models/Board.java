@@ -2,15 +2,18 @@ package com.game.Battleship.models;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Board {
 
     private int defaultBoardSize = 10;
     private int size;
+    private String name;
     private List<Cell> boardField;
 
-    public Board(){
+    public Board(){};
+
+    public Board(String name){
+        this.name = name;
         this.size = defaultBoardSize;
         this.boardField = generateBoardField();
 
@@ -23,6 +26,10 @@ public class Board {
 
     public List<Cell> getBoardField() {
         return boardField;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void setBoardField(List<Cell> boardField) {
