@@ -10,5 +10,4 @@ public class HomeController {
 
             return "Welcome to Battleship game!";
         }
-
 }

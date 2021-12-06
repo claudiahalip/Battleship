@@ -7,19 +7,16 @@ public class Board {
 
     private int defaultBoardSize = 10;
     private int size;
-    private String name;
     private List<Cell> boardField;
 
-    public Board(){};
+    public Board(){
 
-    public Board(String name){
-        this.name = name;
         this.size = defaultBoardSize;
         this.boardField = generateBoardField();
-
     }
 
     public Board(int size) {
+
         this.size = size;
         this.boardField = generateBoardField();
     }
@@ -28,19 +25,30 @@ public class Board {
         return boardField;
     }
 
-    public String getName(){
-        return name;
-    }
-
-    public void setBoardField(List<Cell> boardField) {
-        this.boardField = boardField;
-    }
-
     public int getSize(){
         return size;
     }
 
-    public void setSize(int size){ this.size = size; }
+    public void addShip(Ship ship, Integer index){
+
+        if(ship.getHorizontal()) {
+            for (int i = 0; i < ship.getSize(); i++) {
+                Cell cell = new Cell();
+                cell.setValue(Cell.Value.SHIP);
+                cell.setType(ship.getType());
+                this.getBoardField().set(index, cell);
+                index++;
+            }
+        } else {
+            for(int i = 0; i < ship.getSize(); i++) {
+                Cell cell = new Cell();
+                cell.setValue(Cell.Value.SHIP);
+                cell.setType(ship.getType());
+                this.getBoardField().set(index, cell);
+                index = index + this.getSize();
+            }
+        }
+    }
 
     private List<Cell> generateBoardField(){
         // create an InStream with elements from 0 to this.size to the power of 2
@@ -48,7 +56,7 @@ public class Board {
 
         List<Cell> result;
         //for each element in the inStream creates a new Cell object and collect them to a list
-        result = streamRange.mapToObj(i -> new Cell()).collect(Collectors.toList());
+        result = streamRange.mapToObj(i -> new Cell(Cell.Type.WATER, Cell.Value.WATER)).collect(Collectors.toList());
 
         return result;
     }
