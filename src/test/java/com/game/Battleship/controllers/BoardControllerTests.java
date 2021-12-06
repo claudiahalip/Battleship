@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import  org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -25,7 +26,7 @@ public class BoardControllerTests {
     }
 
     @Test
-    public void boardFieldSizeAttributeValueIs100(){
+    public void boardFieldSizeIsEqualWithBoardSizeToThePowerOf2(){
 
         Board response = template.getForObject("/board", Board.class);
         Assertions.assertEquals(100, response.getBoardField().size());
@@ -36,8 +37,7 @@ public class BoardControllerTests {
     public void boardFieldContainsCellObjects(){
 
         Board response = template.getForObject("/board", Board.class);
-        Cell cell = new Cell();
-        Assertions.assertEquals(true, response.getBoardField().add(cell));
+        Assert.isInstanceOf(Cell.class, response.getBoardField().get(0));
 
     }
 
