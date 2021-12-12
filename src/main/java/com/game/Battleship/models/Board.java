@@ -29,6 +29,11 @@ public class Board {
         return size;
     }
 
+    public Cell getBoardCell(Integer index){
+
+        return this.getBoardField().get(index);
+    }
+
     public void addShip(Ship ship, Integer index){
 
         if(ship.getHorizontal()) {
@@ -57,7 +62,6 @@ public class Board {
         List<Cell> result;
         //for each element in the inStream creates a new Cell object and collect them to a list
         result = streamRange.mapToObj(i -> new Cell(Cell.Type.WATER, Cell.Value.WATER)).collect(Collectors.toList());
-
         return result;
     }
 }
