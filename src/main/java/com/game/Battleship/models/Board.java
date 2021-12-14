@@ -10,12 +10,13 @@ public class Board {
     private List<Cell> boardField;
 
     public Board(){
+
         this.size = defaultBoardSize;
         this.boardField = generateBoardField();
-
     }
 
     public Board(int size) {
+
         this.size = size;
         this.boardField = generateBoardField();
     }
@@ -33,15 +34,17 @@ public class Board {
         if(ship.getHorizontal()) {
             for (int i = 0; i < ship.getSize(); i++) {
                 Cell cell = new Cell();
-                cell.setValue(ship.getType());
-                this.boardField.set(index, cell);
+                cell.setValue(Cell.Value.SHIP);
+                cell.setType(ship.getType());
+                this.getBoardField().set(index, cell);
                 index++;
             }
         } else {
             for(int i = 0; i < ship.getSize(); i++) {
                 Cell cell = new Cell();
-                cell.setValue(ship.getType());
-                this.boardField.set(index, cell);
+                cell.setValue(Cell.Value.SHIP);
+                cell.setType(ship.getType());
+                this.getBoardField().set(index, cell);
                 index = index + this.getSize();
             }
         }
@@ -53,7 +56,7 @@ public class Board {
 
         List<Cell> result;
         //for each element in the inStream creates a new Cell object and collect them to a list
-        result = streamRange.mapToObj(i -> new Cell("water")).collect(Collectors.toList());
+        result = streamRange.mapToObj(i -> new Cell(Cell.Type.WATER, Cell.Value.WATER)).collect(Collectors.toList());
 
         return result;
     }

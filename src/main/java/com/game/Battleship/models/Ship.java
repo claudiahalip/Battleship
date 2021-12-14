@@ -5,23 +5,26 @@ import java.util.stream.IntStream;
 
 public class Ship {
 
-    private String type;
+    private Cell.Type type;
     private int size;
     private List<Cell> shipBody;
     private boolean isHorizontal;
 
     public Ship(){};
 
-    public Ship(String type,int size){
+    public Ship(Cell.Type type, int size){
+
         this.type = type;
         this.size = size;
         this.shipBody = generateShipBody();
         this.isHorizontal = true;
     }
 
-    public String getType(){
+    public Cell.Type getType(){
         return this.type;
     }
+
+    public void setType(Cell.Type type){ this.type = type; }
 
     public int getSize(){
         return this.size;
@@ -35,27 +38,13 @@ public class Ship {
         this.isHorizontal = b;
     }
 
-    public boolean isShipSunk(){
-        for(Cell cell : this.shipBody) {
-            if (cell.getValue() != null && !cell.getValue().equals("Hit")) {
-                continue;
-            }
-            return false;
-        }
-
-        return true;
-    }
-
     private List<Cell> generateShipBody(){
+
         // create an InStream with elements from 0 to this.size
         IntStream streamRange = IntStream.range(0, this.size);
-
         List<Cell> result;
         //for each element in the inStream creates a new Cell object and collect them to a list
-        result = streamRange.mapToObj(i -> new Cell(this.getType())).collect(Collectors.toList());
-
+        result = streamRange.mapToObj(i -> new Cell(this.getType(), Cell.Value.SHIP)).collect(Collectors.toList());
         return result;
-
     }
-
 }
