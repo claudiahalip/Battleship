@@ -9,6 +9,7 @@ public class Ship {
     private int size;
     private List<Cell> shipBody;
     private boolean isHorizontal;
+    private boolean isSunk;
 
     public Ship(){};
 
@@ -18,6 +19,7 @@ public class Ship {
         this.size = size;
         this.shipBody = generateShipBody();
         this.isHorizontal = true;
+        this.isSunk = false;
     }
 
     public Cell.Type getType(){
@@ -37,6 +39,10 @@ public class Ship {
     public void setHorizontal(boolean b){
         this.isHorizontal = b;
     }
+
+    public Boolean getSunk(){ return isSunk; }
+
+    public void setSunk(boolean b){ this.isSunk = b; }
 
     private List<Cell> generateShipBody(){
 

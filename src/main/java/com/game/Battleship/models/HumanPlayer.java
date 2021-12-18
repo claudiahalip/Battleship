@@ -1,8 +1,11 @@
 package com.game.Battleship.models;
 
+import java.util.List;
+
 public class HumanPlayer {
 
     private Board board;
+    private Fleet fleet;
 
     public HumanPlayer(){
 
@@ -11,5 +14,5 @@ public class HumanPlayer {
 
     public Board getBoard() { return board; }
 
-    public void setBoard(Board board) { this.board = board; }
+    public List<Ship> getFleet() { return fleet.getFleet();}
 }
